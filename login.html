@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hanmant Cyber Analyzer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="login-box">
+<h2>Hanmant Cyber Analyzer</h2>
+<p class="subtitle">Yogesh Cyber Security Lab</p>
+
+<input type="text" id="user" placeholder="Username">
+<input type="password" id="pass" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+</div>
+
+<script>
+function login(){
+var u=document.getElementById("user").value;
+var p=document.getElementById("pass").value;
+
+if(u==="Hanmant" && p==="hanmant123"){
+window.location="dashboard.html";
+}else{
+document.getElementById("msg").innerHTML="Invalid Login";
+}
+}
+</script>
+
+</body>
+</html>

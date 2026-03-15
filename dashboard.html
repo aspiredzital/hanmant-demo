@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hanmant Cyber Analyzer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Hanmant Cyber Analyzer</h1>
+<p class="subtitle">Security Audit Session Active</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>WhatsApp Session Monitor</h3>
+<p>Status: Secure Channel Verified</p>
+</div>
+
+<div class="card">
+<h3>Instagram Login Activity</h3>
+<p>Status: No Suspicious Login</p>
+</div>
+
+<div class="card">
+<h3>Snapchat Session Monitor</h3>
+<p>Status: Access Logs Verified</p>
+</div>
+
+<div class="card">
+<h3>Malware Detection Engine</h3>
+<p>Status: Scan Running</p>
+</div>
+
+</div>
+
+<h2>Security Scan Progress</h2>
+
+<div class="progress-box">
+<p>Device Malware Scan</p>
+<div class="progress"><div id="bar1"></div></div>
+
+<p>Social Media Security Audit</p>
+<div class="progress"><div id="bar2"></div></div>
+</div>
+
+<h2>Network Activity Map</h2>
+
+<canvas id="mapCanvas" width="600" height="300"></canvas>
+
+<h2>Live Security Terminal</h2>
+
+<div class="terminal" id="terminal"></div>
+
+<script>
+
+// Terminal animation
+const lines=[
+"Initializing cyber analysis engine...",
+"Loading network monitoring module...",
+"Scanning open device ports...",
+"Analyzing WhatsApp encrypted session...",
+"Inspecting Instagram login tokens...",
+"Reviewing Snapchat activity logs...",
+"Running malware signature detection...",
+"Monitoring network packets...",
+"Security audit completed."
+];
+
+let i=0;
+function typeLine(){
+if(i<lines.length){
+document.getElementById("terminal").innerHTML+=lines[i]+"<br>";
+i++;
+setTimeout(typeLine,700);
+}
+}
+typeLine();
+
+// Progress animation
+let p1=0;
+let p2=0;
+
+setInterval(function(){
+if(p1<100){
+p1+=2;
+document.getElementById("bar1").style.width=p1+"%";
+}
+},120);
+
+setInterval(function(){
+if(p2<100){
+p2+=1.5;
+document.getElementById("bar2").style.width=p2+"%";
+}
+},150);
+
+// Simple animated network map
+const canvas=document.getElementById("mapCanvas");
+const ctx=canvas.getContext("2d");
+
+let dots=[];
+
+for(let i=0;i<8;i++){
+dots.push({
+x:Math.random()*600,
+y:Math.random()*300,
+vx:(Math.random()-0.5)*1.5,
+vy:(Math.random()-0.5)*1.5
+});
+}
+
+function draw(){
+ctx.fillStyle="#000";
+ctx.fillRect(0,0,600,300);
+
+ctx.fillStyle="#00ff9c";
+
+dots.forEach(d=>{
+d.x+=d.vx;
+d.y+=d.vy;
+
+if(d.x<0||d.x>600) d.vx*=-1;
+if(d.y<0||d.y>300) d.vy*=-1;
+
+ctx.beginPath();
+ctx.arc(d.x,d.y,4,0,Math.PI*2);
+ctx.fill();
+});
+
+for(let a=0;a<dots.length;a++){
+for(let b=a+1;b<dots.length;b++){
+let dx=dots[a].x-dots[b].x;
+let dy=dots[a].y-dots[b].y;
+let dist=Math.sqrt(dx*dx+dy*dy);
+
+if(dist<120){
+ctx.strokeStyle="#00ff9c33";
+ctx.beginPath();
+ctx.moveTo(dots[a].x,dots[a].y);
+ctx.lineTo(dots[b].x,dots[b].y);
+ctx.stroke();
+}
+}
+}
+
+requestAnimationFrame(draw);
+}
+
+draw();
+
+</script>
+
+</body>
+</html>
